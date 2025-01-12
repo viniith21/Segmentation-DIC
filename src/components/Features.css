@@ -1,0 +1,16 @@
+.card-title {
+  font-family: 'Arial', sans-serif; /* Change font family as needed */
+  font-weight: bolder; /* Slightly bolder than normal */
+  color: #5f9ea0; /* Dark green color */
+  letter-spacing: 1px; /* Add spacing between letters */
+ 
+
+}
+
+.card-text {
+  font-family: 'Arial', sans-serif; /* Change font family as needed */
+  font-weight: 500; /* Normal font weight, slightly lighter than the title */
+  color: #333; /* Default text color */
+  letter-spacing: 0.5px; /* Add spacing between letters */
+  line-height: 1.6; /* Increase line height for better readability */
+}

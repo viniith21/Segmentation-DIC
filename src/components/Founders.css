@@ -1,0 +1,31 @@
+/* Assuming this is in a CSS file or within a <style> tag in your component */
+.container-founders {
+  margin-top: 50px;
+  width: 80%; /* Set the container width to 80% of the parent */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  width: 100%; /* Ensure the card takes full width of its container */
+}
+
+.card img {
+  width: 80px; /* Set the image width */
+  height: 120px; /* Set the image height */
+  object-fit: cover;
+  display: block;
+  margin: 0 auto; /* Center the image */
+}
+
+.card-body {
+  padding: 15px; /* Adjust padding as needed */
+}
+
+.card-title {
+  font-size: 1.25rem; /* Adjust title font size */
+}
+
+.card-text {
+  font-size: 1rem; /* Adjust text font size */
+}

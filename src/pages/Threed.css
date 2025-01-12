@@ -1,0 +1,135 @@
+/* General Page Styling */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Container for the 3D Viewer */
+.threed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #d8e8ff, #f4f4f9);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Title Styling */
+.threed-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* 3D Viewer Box Styling */
+.viewer-box {
+  width: 60%;
+  max-width: 600px;
+  height: 450px;
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  animation: slideIn 1s ease-in-out;
+}
+
+/* 3D Model Viewer Styling */
+.model-viewer {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  transform: scale(1.1); /* Adjust scale for larger model display */
+}
+
+/* Instructions Styling */
+.instructions {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Button Container Styling */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Download and Clear Buttons */
+.download-button,
+.clear-button {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.download-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+.clear-button {
+  background-color: #ff4d4d;
+}
+
+.clear-button:hover {
+  background-color: #cc0000;
+  transform: translateY(-3px);
+}
+
+/* Error Container Styling */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff4d4d;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

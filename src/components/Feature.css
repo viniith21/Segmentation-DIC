@@ -1,0 +1,35 @@
+/* Feature.css */
+
+/* Customize the card styling if needed */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+}
+.card-body {
+  padding: 1.25rem;
+}
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  
+}
+.card-text {
+  font-size: 1rem;
+}
+
+/* Feature.css */
+
+/* Styles for the feature image */
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.feature-image {
+  width: 80px; /* Adjust size as needed */
+  height: 100px; /* Adjust size as needed */
+ 
+  object-fit: contain;
+}
+

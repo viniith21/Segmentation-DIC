@@ -1,0 +1,65 @@
+.navbar {
+  background-color: #5f9ea0; /* Navbar background color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 40px; /* Adjust logo size */
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.navbar-name {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-right a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.navbar-right a:hover {
+  background-color: #468686; /* Hover effect color */
+}
+
+/* FileUpload.css */
+
+/* Animation for input box appearing */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.visible {
+  animation: fadeIn 1s forwards;
+}

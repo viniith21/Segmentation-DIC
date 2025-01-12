@@ -1,0 +1,18 @@
+/* animations.css */
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(0);
+}

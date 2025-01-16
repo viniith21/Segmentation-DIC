@@ -14,7 +14,7 @@ node_modules/
 build/
 dist/
 dist-ssr/
-server/weights
+
 # Optional npm cache directory
 .npm
 
@@ -67,7 +67,3 @@ vite.config.js
 *.sln
 *.sw?
 
-# Custom values
-SKRUNet_best_weight.pth
-SKRUNet_best_weight(recon).pth
-test_autoencoder.h5

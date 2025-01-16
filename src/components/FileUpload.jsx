@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast"; // Import React Hot Toast
+import toast, { Toaster } from "react-hot-toast";
 import "./FileUpload.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -62,6 +62,9 @@ const FileUpload = () => {
     setModelType(event.target.value);
   };
 
+  // 1) Upload the file -> call process_nrrd
+  // 2) Immediately request get_preprocessed_glb -> get the preprocessed .glb
+  // 3) Navigate to /threed with the preprocessed GLB URL
   const handleUpload = async () => {
     if (!file) {
       setError("Please select a file to upload");
@@ -77,10 +80,10 @@ const FileUpload = () => {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("cookie_name", cookieName); // Send cookie name
+    formData.append("cookie_name", cookieName);
 
     try {
-      // Step 1: Call process_nrrd endpoint
+      // Step 1: Process the NRRD file
       const processResponse = await axios.post(
         "http://127.0.0.1:5000/process_nrrd",
         formData,
@@ -90,17 +93,15 @@ const FileUpload = () => {
           },
         }
       );
-
       console.log("Process NRRD Response:", processResponse.data);
 
-      // Step 2: Call model_prediction endpoint
-      const predictionFormData = new FormData();
-      predictionFormData.append("model_type", modelType);
-      predictionFormData.append("cookie_name", cookieName); // Send cookie name
+      // Step 2: Retrieve the preprocessed GLB
+      const glbFormData = new FormData();
+      glbFormData.append("cookie_name", cookieName);
 
-      const predictionResponse = await axios.post(
-        "http://127.0.0.1:5000/model_prediction",
-        predictionFormData,
+      const glbResponse = await axios.post(
+        "http://127.0.0.1:5000/get_preprocessed_glb",
+        glbFormData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -109,19 +110,22 @@ const FileUpload = () => {
         }
       );
 
-      console.log("3D File Blob:", predictionResponse.data);
-
-      const url = window.URL.createObjectURL(
-        new Blob([predictionResponse.data])
+      const preprocessedUrl = window.URL.createObjectURL(
+        new Blob([glbResponse.data])
       );
-      console.log("3D File URL:", url);
 
-      setResponse(url);
-      toast.success("The 3D file is ready!"); // Show success toast
+      setResponse(preprocessedUrl);
+      toast.success("Preprocessed 3D file is ready!");
       setError(null);
 
-      // Directly navigate to the 3D view page
-      navigate("/threed", { state: { url: url, cookieName: cookieName } });
+      // Navigate to /threed with the preprocessed GLB and model info
+      navigate("/threed", {
+        state: {
+          url: preprocessedUrl,
+          cookieName: cookieName,
+          modelType: modelType,
+        },
+      });
     } catch (err) {
       console.error("Error during upload process:", err);
       setResponse(null);
@@ -129,7 +133,7 @@ const FileUpload = () => {
         err.response?.data?.error ||
           "An error occurred during the upload process"
       );
-      toast.error("Failed to process the file."); // Show error toast
+      toast.error("Failed to process the file.");
     } finally {
       setIsUploading(false);
     }
@@ -137,7 +141,7 @@ const FileUpload = () => {
 
   const handleView3D = () => {
     if (response) {
-      navigate("/threed", { state: { url: response, cookieName: cookieName } });
+      navigate("/threed", { state: { url: response, cookieName, modelType } });
     } else {
       setError("No 3D file to view. Please process a file first.");
     }
@@ -145,7 +149,7 @@ const FileUpload = () => {
 
   return (
     <div className="page-container">
-      <Toaster /> {/* Add Toaster component */}
+      <Toaster />
       <h1 className="main-heading">
         Skull Reconstruction Using Artificial Intelligence
       </h1>
